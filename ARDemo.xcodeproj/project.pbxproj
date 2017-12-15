@@ -57,14 +57,46 @@
 			isa = PBXGroup;
 			children = (
 				496286471FA1031400269C98 /* AppDelegate.swift */,
+				B6C7915B1FE47FC400037105 /* Common */,
+				B6C7915D1FE47FDC00037105 /* Controllers */,
+				B6C7915E1FE47FEC00037105 /* Supporting Files */,
+			);
+			path = ARDemo;
+			sourceTree = "<group>";
+		};
+		B6C7915B1FE47FC400037105 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B6C7915C1FE47FCC00037105 /* SceneKit */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		B6C7915C1FE47FCC00037105 /* SceneKit */ = {
+			isa = PBXGroup;
+			children = (
 				496286491FA1031400269C98 /* art.scnassets */,
-				4962864B1FA1031400269C98 /* ViewController.swift */,
+			);
+			path = SceneKit;
+			sourceTree = "<group>";
+		};
+		B6C7915D1FE47FDC00037105 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
 				4962864D1FA1031400269C98 /* Main.storyboard */,
+				4962864B1FA1031400269C98 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B6C7915E1FE47FEC00037105 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				496286501FA1031400269C98 /* Assets.xcassets */,
 				496286521FA1031400269C98 /* LaunchScreen.storyboard */,
 				496286551FA1031400269C98 /* Info.plist */,
 			);
-			path = ARDemo;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,7 +312,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9B83N8S7VW;
-				INFOPLIST_FILE = ARDemo/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ARDemo/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tackmobile.ARDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -295,7 +327,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9B83N8S7VW;
-				INFOPLIST_FILE = ARDemo/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ARDemo/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tackmobile.ARDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
