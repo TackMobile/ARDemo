@@ -15,6 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
+    
+    // Check if we don't have the correct permissions
+    if !PermissionManager.shared.isAccessAuthorized {
+      let permissionsViewController = PermissionsViewController.newViewController()
+      RootNavigationController.shared.viewControllers = [ permissionsViewController ]
+    }
+    
 		return true
 	}
 
