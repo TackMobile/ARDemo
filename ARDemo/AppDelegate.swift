@@ -13,9 +13,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
-
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
+    
+    // Check if we don't have the correct permissions
+    if !PermissionManager.shared.isAccessAuthorized, let rootNavigationController = self.window?.rootViewController as? UINavigationController {
+      let permissionsViewController = PermissionsViewController.newViewController(delegate: self)
+      rootNavigationController.viewControllers = [ permissionsViewController ]
+    }
+    
 		return true
 	}
 
@@ -40,7 +46,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func applicationWillTerminate(_ application: UIApplication) {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 	}
-
-
 }
 
+// MARK: - PermissionsViewControllerDelegate
+
+extension AppDelegate : PermissionsViewControllerDelegate {
+  
+  func didAuthorizeAllPermissions() {
+    if let rootNavigationController = self.window?.rootViewController as? UINavigationController {
+      let mainViewController = MainViewController.newViewController()
+      mainViewController.navigationItem.hidesBackButton = true
+      rootNavigationController.pushViewController(mainViewController, animated: true)
+    }
+  }
+}
