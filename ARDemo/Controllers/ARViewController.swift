@@ -19,6 +19,7 @@ class ARViewController : UIViewController {
   weak var trackingStateDelegate: ARStateDelegate? = nil
   private let session = ARSession()
   private let sessionConfig = ARWorldTrackingConfiguration()
+  var planeAnchorDragons: [ARPlaneAnchor : DragonNode] = [:]
   
   // MARK: - AR Scene Properties
   
@@ -129,7 +130,8 @@ class ARViewController : UIViewController {
     let hitResults = self.sceneView.hitTest(tappedLocation, options: [:])
     
     // Check if the user tapped a dragon
-    if let dragonNode = hitResults.first?.node.parent as? DragonNode {
+    // Hit result node hierarchy: Dragon_Mesh > VirtualObject Wrapper Node > DragonNode
+    if let dragonNode = hitResults.first?.node.parent?.parent as? DragonNode {
       
       // Toggle the dragon animation
       dragonNode.isPaused = !dragonNode.isPaused
@@ -146,11 +148,12 @@ class ARViewController : UIViewController {
       let position = anchor.transform
       dragonNode.position = SCNVector3(x: position.columns.3.x, y: position.columns.3.y, z: position.columns.3.z)
       
+      // Add the dragon to the scene
+      self?.planeAnchorDragons[anchor] = dragonNode
+      self?.sceneView.scene.rootNode.addChildNode(dragonNode)
+      
       // Pause any animations
       dragonNode.isPaused = true
-      
-      // Add the dragon to the scene
-      self?.sceneView.scene.rootNode.addChildNode(dragonNode)
     }
   }
 }
@@ -194,8 +197,10 @@ extension ARViewController : ARSCNViewDelegate {
   func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
     Log.logMethodExecution()
     
-    node.enumerateChildNodes { (childNode, _) in
-      childNode.removeFromParentNode()
+    // Remove the dragon node associated with the anchor
+    if let planeAnchor = anchor as? ARPlaneAnchor, let dragonNode = self.planeAnchorDragons[planeAnchor] {
+      dragonNode.removeFromParentNode()
+      self.planeAnchorDragons[planeAnchor] = nil
     }
   }
   

@@ -13,7 +13,7 @@ class DragonNode : VirtualObject {
   // MARK: - Required
   
   override var modelName: String {
-    return "Dragon 2.5_dae"
+    return "DragonNode"
   }
   
   override var fileExtension: String {
@@ -26,7 +26,7 @@ class DragonNode : VirtualObject {
     super.loadModel { [weak self] in
       
       // Size this node to a 1m bounding box
-      self?.baseWrapperNode?.set(desiredSizeDimension: 1)
+      self?.baseWrapperNode?.set(desiredSizeDimension: 0.7)
       
       completion()
     }
