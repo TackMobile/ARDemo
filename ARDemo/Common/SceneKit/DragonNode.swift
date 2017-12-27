@@ -10,11 +10,25 @@ import SceneKit
 
 class DragonNode : VirtualObject {
   
+  // MARK: - Required
+  
   override var modelName: String {
     return "Dragon 2.5_dae"
   }
   
   override var fileExtension: String {
     return "dae"
+  }
+  
+  // MARK: - Load
+  
+  override func loadModel(completion: @escaping () -> Void) {
+    super.loadModel { [weak self] in
+      
+      // Size this node to a 1m bounding box
+      self?.baseWrapperNode?.set(desiredSizeDimension: 1)
+      
+      completion()
+    }
   }
 }

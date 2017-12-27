@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -121,17 +120,23 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Bn-lK-Oc1">
                                 <rect key="frame" x="113" y="318.5" width="148" height="30"/>
                                 <state key="normal" title="Allow Camera Access">
-                                    <color key="titleColor" name="SeaBlue"/>
+                                    <color key="titleColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="cameraPermissionButtonSelected" destination="LGL-O4-Uee" eventType="touchUpInside" id="Gmu-5W-YOh"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="fEW-WO-fWL">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                                <color key="color" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="fEW-WO-fWL" firstAttribute="centerX" secondItem="5Bn-lK-Oc1" secondAttribute="centerX" id="1B6-HI-noM"/>
                             <constraint firstItem="HJS-hA-ke9" firstAttribute="top" secondItem="zsp-3p-AYe" secondAttribute="top" id="1Ka-B4-hOF"/>
                             <constraint firstItem="HJS-hA-ke9" firstAttribute="leading" secondItem="sMI-Rs-Y1q" secondAttribute="leading" id="2uU-E8-42B"/>
+                            <constraint firstItem="fEW-WO-fWL" firstAttribute="centerY" secondItem="5Bn-lK-Oc1" secondAttribute="centerY" id="6n0-GY-isg"/>
                             <constraint firstAttribute="bottom" secondItem="HJS-hA-ke9" secondAttribute="bottom" id="DLQ-OD-2us"/>
                             <constraint firstItem="sMI-Rs-Y1q" firstAttribute="bottom" secondItem="HL3-0f-g5O" secondAttribute="bottom" id="G77-qV-xby"/>
                             <constraint firstItem="sMI-Rs-Y1q" firstAttribute="trailing" secondItem="HL3-0f-g5O" secondAttribute="trailing" id="Pm9-T4-A0l"/>
@@ -144,6 +149,7 @@
                         <viewLayoutGuide key="safeArea" id="sMI-Rs-Y1q"/>
                     </view>
                     <connections>
+                        <outlet property="cameraPermissionActivityIndicator" destination="fEW-WO-fWL" id="HYo-h7-dsP"/>
                         <outlet property="cameraPermissionButton" destination="5Bn-lK-Oc1" id="iKM-r8-025"/>
                     </connections>
                 </viewController>
@@ -154,8 +160,5 @@
     </scenes>
     <resources>
         <image name="assetSpherical" width="1792" height="896"/>
-        <namedColor name="SeaBlue">
-            <color red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
 </document>

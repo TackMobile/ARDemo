@@ -84,7 +84,7 @@ class ARViewController : UIViewController {
     super.viewDidDisappear(animated)
     
     // Reset idle timer flat
-    UIApplication.shared.isIdleTimerDisabled = true
+    UIApplication.shared.isIdleTimerDisabled = false
     
     // Pause the AR scene
     self.pauseScene()
@@ -114,7 +114,7 @@ class ARViewController : UIViewController {
     self.sessionConfig.planeDetection = .horizontal
     self.sessionConfig.isLightEstimationEnabled = true
     self.sessionConfig.worldAlignment = .gravityAndHeading
-    self.session.run(self.sessionConfig, options: [.resetTracking, .removeExistingAnchors])
+    self.session.run(self.sessionConfig, options: [ .resetTracking, .removeExistingAnchors ])
   }
   
   // MARK: - Hit Detection
@@ -142,10 +142,6 @@ class ARViewController : UIViewController {
     let dragonNode = DragonNode()
     dragonNode.loadModel { [weak self] in
       
-      // Scale the dragon
-      let scale: Float = 0.01
-      dragonNode.scale = SCNVector3(x: scale, y: scale, z: scale)
-      
       // Position the dragon
       let position = anchor.transform
       dragonNode.position = SCNVector3(x: position.columns.3.x, y: position.columns.3.y, z: position.columns.3.z)
@@ -163,26 +159,44 @@ class ARViewController : UIViewController {
 
 extension ARViewController : ARSCNViewDelegate {
   
+  /*
+   Called when a new node has been mapped to the given anchor.
+   
+   @param renderer The renderer that will render the scene.
+   @param node The node that maps to the anchor.
+   @param anchor The added anchor.
+   */
   func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
     Log.logMethodExecution()
     
     guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
     
-//    if self.planeAnchor == nil {
-//      self.planeAnchor = planeAnchor
-    
-      // Clear out the debugging options once a plane has been detected
-      self.sceneView.debugOptions = []
+    // Add a dragon to this new plane anchor
     self.addDragon(to: planeAnchor)
-//    }
   }
   
-  func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-    Log.logMethodExecution()
-  }
+  /*
+   Called when a node has been updated with data from the given anchor.
+   
+   @param renderer The renderer that will render the scene.
+   @param node The node that was updated.
+   @param anchor The anchor that was updated.
+   */
+  func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {}
   
+  /*
+   Called when a mapped node has been removed from the scene graph for the given anchor.
+   
+   @param renderer The renderer that will render the scene.
+   @param node The node that was removed.
+   @param anchor The anchor that was removed.
+   */
   func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
     Log.logMethodExecution()
+    
+    node.enumerateChildNodes { (childNode, _) in
+      childNode.removeFromParentNode()
+    }
   }
   
   func sessionWasInterrupted(_ session: ARSession) {
@@ -201,15 +215,15 @@ extension ARViewController : ARSCNViewDelegate {
     self.currentCameraTrackingState = camera.trackingState
     switch camera.trackingState {
     case .limited(.insufficientFeatures):
-      Log.extendedLog("camera did change tracking state: limited, insufficient features")
+      Log.extendedLog("Camera did change tracking state: limited, insufficient features")
     case .limited(.excessiveMotion):
-      Log.extendedLog("camera did change tracking state: limited, excessive motion")
+      Log.extendedLog("Camera did change tracking state: limited, excessive motion")
     case .limited(.initializing):
-      Log.extendedLog("camera did change tracking state: limited, initializing")
+      Log.extendedLog("Camera did change tracking state: limited, initializing")
     case .normal:
-      Log.extendedLog("camera did change tracking state: normal")
+      Log.extendedLog("Camera did change tracking state: normal")
     case .notAvailable:
-      Log.extendedLog("camera did change tracking state: not available")
+      Log.extendedLog("Camera did change tracking state: not available")
     }
   }
 }

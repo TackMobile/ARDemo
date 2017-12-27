@@ -8,18 +8,30 @@
 
 import UIKit
 
+protocol PermissionsViewControllerDelegate : class {
+  func didAuthorizeAllPermissions()
+}
+
 class PermissionsViewController : UIViewController {
   
   // MARK: - Static Accessors
   
-  static func newViewController() -> PermissionsViewController {
+  private static func newViewController() -> PermissionsViewController {
     return self.newViewController(fromStoryboardWithName: "Main")
+  }
+  
+  static func newViewController(delegate: PermissionsViewControllerDelegate?) -> PermissionsViewController {
+    let viewController = self.newViewController()
+    viewController.delegate = delegate
+    return viewController
   }
   
   // MARK: - Properties
   
   @IBOutlet weak var cameraPermissionButton: UIButton!
+  @IBOutlet weak var cameraPermissionActivityIndicator: UIActivityIndicatorView!
   
+  weak var delegate: PermissionsViewControllerDelegate? = nil
   var isCameraAuthorized: Bool = CameraPermissionManager.shared.isAccessAuthorized
   var isCameraNotDetermined: Bool = CameraPermissionManager.shared.isAccessNotDetermined
   
@@ -43,6 +55,10 @@ class PermissionsViewController : UIViewController {
   func reloadContent() {
     
     // Camera
+    self.cameraPermissionActivityIndicator.stopAnimating()
+    self.cameraPermissionActivityIndicator.isHidden = true
+    self.cameraPermissionButton.isUserInteractionEnabled = true
+    self.cameraPermissionButton.isHidden = false
     if self.isCameraAuthorized {
       self.cameraPermissionButton.setTitle("Camera Access Granted", for: .normal)
       self.cameraPermissionButton.isUserInteractionEnabled = false
@@ -63,6 +79,12 @@ class PermissionsViewController : UIViewController {
       self.showSettingsAlert()
       return
     }
+    
+    // Show loading
+    self.cameraPermissionActivityIndicator.isHidden = false
+    self.cameraPermissionActivityIndicator.startAnimating()
+    self.cameraPermissionButton.isUserInteractionEnabled = false
+    self.cameraPermissionButton.isHidden = true
     
     // Request permissions
     CameraPermissionManager.shared.requestAuthorization()
@@ -87,12 +109,6 @@ class PermissionsViewController : UIViewController {
     
     self.present(alertController, animated: true, completion: nil)
   }
-  
-  func showMainController() {
-    let mainViewController = MainViewController.newViewController()
-    mainViewController.navigationItem.hidesBackButton = true
-    RootNavigationController.shared.pushViewController(mainViewController, animated: true)
-  }
 }
 
 // MARK: - CameraPermissionDelegate
@@ -102,7 +118,7 @@ extension PermissionsViewController : CameraPermissionDelegate {
   func cameraPermissionManagerDidUpdateAuthorization(isAuthorized: Bool) {
     self.isCameraAuthorized = isAuthorized
     if self.areAllPermissionAuthorized {
-      self.showMainController()
+      self.delegate?.didAuthorizeAllPermissions()
     }
     
     // Update the content

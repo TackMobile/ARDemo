@@ -62,7 +62,8 @@ class CameraPermissionManager : NSObject, PermissionManagerDelegate {
   // MARK: - Authorization
   
   func requestAuthorization() {
-    AVCaptureDevice.requestAccess(for: .video) { [weak self] isAuthorized in
+    AVCaptureDevice.requestAccess(for: .video) { isAuthorized in
+      
       if isAuthorized {
         Log.log("Authorization authorized")
       } else {
@@ -70,7 +71,9 @@ class CameraPermissionManager : NSObject, PermissionManagerDelegate {
       }
       
       // Notify delegate
-      self?.authorizationDelegate?.cameraPermissionManagerDidUpdateAuthorization(isAuthorized: isAuthorized)
+      DispatchQueue.main.async { [weak self] in
+        self?.authorizationDelegate?.cameraPermissionManagerDidUpdateAuthorization(isAuthorized: isAuthorized)
+      }
     }
   }
 }

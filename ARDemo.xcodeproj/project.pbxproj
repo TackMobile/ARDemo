@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		496286481FA1031400269C98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496286471FA1031400269C98 /* AppDelegate.swift */; };
 		4962864A1FA1031400269C98 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 496286491FA1031400269C98 /* Models.scnassets */; };
-		4962864C1FA1031400269C98 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4962864B1FA1031400269C98 /* ViewController.swift */; };
 		4962864F1FA1031400269C98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4962864D1FA1031400269C98 /* Main.storyboard */; };
 		496286511FA1031400269C98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 496286501FA1031400269C98 /* Assets.xcassets */; };
 		496286541FA1031400269C98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496286521FA1031400269C98 /* LaunchScreen.storyboard */; };
@@ -24,17 +23,18 @@
 		B6534BC71FF31930005E2EE2 /* ARStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6534BC61FF31930005E2EE2 /* ARStateDelegate.swift */; };
 		B6534BCA1FF3196C005E2EE2 /* ARState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6534BC91FF3196C005E2EE2 /* ARState.swift */; };
 		B6534BCC1FF31AF2005E2EE2 /* CGRect+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6534BCB1FF31AF2005E2EE2 /* CGRect+Util.swift */; };
-		B6534BCE1FF31B69005E2EE2 /* ARSCNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6534BCD1FF31B69005E2EE2 /* ARSCNView.swift */; };
+		B6534BCE1FF31B69005E2EE2 /* ARSCNView+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6534BCD1FF31B69005E2EE2 /* ARSCNView+Util.swift */; };
 		B6534BD01FF32874005E2EE2 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6534BCF1FF32874005E2EE2 /* RootNavigationController.swift */; };
 		B6534BD31FF3F8F9005E2EE2 /* VirtualObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6534BD21FF3F8F9005E2EE2 /* VirtualObject.swift */; };
 		B6534BD51FF3F954005E2EE2 /* DragonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6534BD41FF3F954005E2EE2 /* DragonNode.swift */; };
+		B6534BD71FF402C8005E2EE2 /* SCNNode+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6534BD61FF402C8005E2EE2 /* SCNNode+Util.swift */; };
+		B6534BD91FF4046B005E2EE2 /* SCNVector3+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6534BD81FF4046B005E2EE2 /* SCNVector3+Util.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		496286441FA1031400269C98 /* ARDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		496286471FA1031400269C98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		496286491FA1031400269C98 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
-		4962864B1FA1031400269C98 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4962864E1FA1031400269C98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		496286501FA1031400269C98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		496286531FA1031400269C98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -50,10 +50,12 @@
 		B6534BC61FF31930005E2EE2 /* ARStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARStateDelegate.swift; sourceTree = "<group>"; };
 		B6534BC91FF3196C005E2EE2 /* ARState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARState.swift; sourceTree = "<group>"; };
 		B6534BCB1FF31AF2005E2EE2 /* CGRect+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Util.swift"; sourceTree = "<group>"; };
-		B6534BCD1FF31B69005E2EE2 /* ARSCNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARSCNView.swift; sourceTree = "<group>"; };
+		B6534BCD1FF31B69005E2EE2 /* ARSCNView+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARSCNView+Util.swift"; sourceTree = "<group>"; };
 		B6534BCF1FF32874005E2EE2 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
 		B6534BD21FF3F8F9005E2EE2 /* VirtualObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualObject.swift; sourceTree = "<group>"; };
 		B6534BD41FF3F954005E2EE2 /* DragonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonNode.swift; sourceTree = "<group>"; };
+		B6534BD61FF402C8005E2EE2 /* SCNNode+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNNode+Util.swift"; sourceTree = "<group>"; };
+		B6534BD81FF4046B005E2EE2 /* SCNVector3+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Util.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +100,9 @@
 			isa = PBXGroup;
 			children = (
 				B6534BCB1FF31AF2005E2EE2 /* CGRect+Util.swift */,
-				B6534BCD1FF31B69005E2EE2 /* ARSCNView.swift */,
+				B6534BCD1FF31B69005E2EE2 /* ARSCNView+Util.swift */,
+				B6534BD61FF402C8005E2EE2 /* SCNNode+Util.swift */,
+				B6534BD81FF4046B005E2EE2 /* SCNVector3+Util.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -166,7 +170,6 @@
 			children = (
 				B6534BD11FF32891005E2EE2 /* Navigation Controllers */,
 				4962864D1FA1031400269C98 /* Main.storyboard */,
-				4962864B1FA1031400269C98 /* ViewController.swift */,
 				B6534BBA1FF3145F005E2EE2 /* PermissionsViewController.swift */,
 				B6534BB41FF310F1005E2EE2 /* MainViewController.swift */,
 				B6534BB61FF310FC005E2EE2 /* ARViewController.swift */,
@@ -258,15 +261,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6534BB51FF310F1005E2EE2 /* MainViewController.swift in Sources */,
-				4962864C1FA1031400269C98 /* ViewController.swift in Sources */,
-				B6534BCE1FF31B69005E2EE2 /* ARSCNView.swift in Sources */,
+				B6534BCE1FF31B69005E2EE2 /* ARSCNView+Util.swift in Sources */,
 				496286481FA1031400269C98 /* AppDelegate.swift in Sources */,
 				B6534BB91FF31268005E2EE2 /* BaseNavigationController.swift in Sources */,
 				B6534BCC1FF31AF2005E2EE2 /* CGRect+Util.swift in Sources */,
 				B6534BBE1FF3150A005E2EE2 /* PermissionManager.swift in Sources */,
 				B6534BC51FF31636005E2EE2 /* ViewControllerFromStoryboardProtocol.swift in Sources */,
+				B6534BD91FF4046B005E2EE2 /* SCNVector3+Util.swift in Sources */,
 				B6534BD01FF32874005E2EE2 /* RootNavigationController.swift in Sources */,
 				B6534BC01FF3152B005E2EE2 /* CameraPermissionManager.swift in Sources */,
+				B6534BD71FF402C8005E2EE2 /* SCNNode+Util.swift in Sources */,
 				B6534BC31FF31567005E2EE2 /* Loggable.swift in Sources */,
 				B6534BCA1FF3196C005E2EE2 /* ARState.swift in Sources */,
 				B6534BD31FF3F8F9005E2EE2 /* VirtualObject.swift in Sources */,
