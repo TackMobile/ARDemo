@@ -41,7 +41,7 @@ class MainViewController : UIViewController {
   // MARK: - Navigation Items
   
   func loadConfiguredNavigationBar() {
-    self.navigationItem.title = "ARDemo"
+    self.navigationItem.title = "Tack Dragon"
     self.navigationItem.hidesBackButton = false
   }
   
@@ -77,7 +77,7 @@ extension MainViewController : ARStateDelegate {
     case .limited(.initializing):
       self.title = "Initializing"
     case .normal:
-      self.title = "ARDemo"
+      self.title = "Tack Dragon"
     case .notAvailable:
       self.title = "❌ Not Available ❌"
     }
