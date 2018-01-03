@@ -19,7 +19,7 @@ class ARViewController : UIViewController {
   weak var trackingStateDelegate: ARStateDelegate? = nil
   private let session = ARSession()
   private let sessionConfig = ARWorldTrackingConfiguration()
-  var planeAnchorDragons: [ARPlaneAnchor : DragonNode] = [:]
+  var planeAnchorDragons = Set<PlaneAnchorDragon>()
   
   // MARK: - AR Scene Properties
   
@@ -101,21 +101,35 @@ class ARViewController : UIViewController {
   // MARK: - Scene
   
   @objc func pauseScene() {
+    
+    // Pause the scene
     self.session.pause()
+    
+    // Clear the scene
+    self.clearScene()
   }
   
   @objc func restartPlaneDetection() {
     
-    // Remove all nodes
-    self.sceneView.scene.rootNode.enumerateChildNodes { (node, _) in
-      node.removeFromParentNode()
-    }
+    // Clear the scene
+    self.clearScene()
     
     // Configure session
     self.sessionConfig.planeDetection = .horizontal
     self.sessionConfig.isLightEstimationEnabled = true
     self.sessionConfig.worldAlignment = .gravityAndHeading
     self.session.run(self.sessionConfig, options: [ .resetTracking, .removeExistingAnchors ])
+  }
+  
+  func clearScene() {
+    
+    // Remove all dragons
+    self.planeAnchorDragons.removeAll()
+    
+    // Remove all nodes
+    self.sceneView.scene.rootNode.enumerateChildNodes { (node, _) in
+      node.removeFromParentNode()
+    }
   }
   
   // MARK: - Hit Detection
@@ -149,7 +163,8 @@ class ARViewController : UIViewController {
       dragonNode.position = SCNVector3(x: position.columns.3.x, y: position.columns.3.y, z: position.columns.3.z)
       
       // Add the dragon to the scene
-      self?.planeAnchorDragons[anchor] = dragonNode
+      let planeAnchorDragon = PlaneAnchorDragon(planeAnchor: anchor, dragonNode: dragonNode)
+      self?.planeAnchorDragons.insert(planeAnchorDragon)
       self?.sceneView.scene.rootNode.addChildNode(dragonNode)
       
       // Pause any animations
@@ -198,9 +213,9 @@ extension ARViewController : ARSCNViewDelegate {
     Log.logMethodExecution()
     
     // Remove the dragon node associated with the anchor
-    if let planeAnchor = anchor as? ARPlaneAnchor, let dragonNode = self.planeAnchorDragons[planeAnchor] {
-      dragonNode.removeFromParentNode()
-      self.planeAnchorDragons[planeAnchor] = nil
+    if let planeAnchor = anchor as? ARPlaneAnchor, let planeAnchorDragon = self.planeAnchorDragons.first(where: { $0.planeAnchor == planeAnchor }) {
+      planeAnchorDragon.dragonNode?.removeFromParentNode()
+      self.planeAnchorDragons.remove(planeAnchorDragon)
     }
   }
   

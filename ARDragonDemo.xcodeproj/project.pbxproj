@@ -29,6 +29,7 @@
 		B6534BD51FF3F954005E2EE2 /* DragonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6534BD41FF3F954005E2EE2 /* DragonNode.swift */; };
 		B6534BD71FF402C8005E2EE2 /* SCNNode+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6534BD61FF402C8005E2EE2 /* SCNNode+Util.swift */; };
 		B6534BD91FF4046B005E2EE2 /* SCNVector3+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6534BD81FF4046B005E2EE2 /* SCNVector3+Util.swift */; };
+		B68A7DB81FFC962700C45FF6 /* PlaneAnchorDragon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68A7DB71FFC962700C45FF6 /* PlaneAnchorDragon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		B6534BD41FF3F954005E2EE2 /* DragonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonNode.swift; sourceTree = "<group>"; };
 		B6534BD61FF402C8005E2EE2 /* SCNNode+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNNode+Util.swift"; sourceTree = "<group>"; };
 		B6534BD81FF4046B005E2EE2 /* SCNVector3+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Util.swift"; sourceTree = "<group>"; };
+		B68A7DB71FFC962700C45FF6 /* PlaneAnchorDragon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaneAnchorDragon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				496286491FA1031400269C98 /* Models.scnassets */,
 				B6534BD21FF3F8F9005E2EE2 /* VirtualObject.swift */,
 				B6534BD41FF3F954005E2EE2 /* DragonNode.swift */,
+				B68A7DB71FFC962700C45FF6 /* PlaneAnchorDragon.swift */,
 			);
 			path = SceneKit;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				B6534BD71FF402C8005E2EE2 /* SCNNode+Util.swift in Sources */,
 				B6534BC31FF31567005E2EE2 /* Loggable.swift in Sources */,
 				B6534BCA1FF3196C005E2EE2 /* ARState.swift in Sources */,
+				B68A7DB81FFC962700C45FF6 /* PlaneAnchorDragon.swift in Sources */,
 				B6534BD31FF3F8F9005E2EE2 /* VirtualObject.swift in Sources */,
 				B6534BD51FF3F954005E2EE2 /* DragonNode.swift in Sources */,
 				B6534BC71FF31930005E2EE2 /* ARStateDelegate.swift in Sources */,
